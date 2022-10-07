@@ -178,8 +178,8 @@ function yumu_the_post_thumbnail($postID) {
             }
         }else{
             $thumbarr=Array(
-                'https://cdn.jsdelivr.net/gh/asir3q/yumu/yumu/style/img/074b7ee923e44e2c9c9c166ffb5af938.jpg',
-                'https://cdn.jsdelivr.net/gh/asir3q/yumu/yumu/style/img/f62e2961be366795facaf7d070a683d4.jpg');
+                '/wp-content/themes/yumu/style/img/074b7ee923e44e2c9c9c166ffb5af938.jpg',
+                '/wp-content/themes/yumu/style/img/f62e2961be366795facaf7d070a683d4.jpg');
                 $rndthumb = array_rand($thumbarr);
                 $thumb = $thumbarr[$rndthumb];
         }

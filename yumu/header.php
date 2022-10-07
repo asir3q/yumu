@@ -21,7 +21,7 @@
                 <i class="iconfont icon-caidan"></i>
             </div>
             <div class="header-logo">
-                <a class="logo" href="<?php echo home_url();?>" rel="home"><img src="https://cdn.jsdelivr.net/gh/asir3q/yumu/yumu/style/img/logo.svg" alt="语幕"></a>
+                <a class="logo" href="<?php echo home_url();?>" rel="home"><img src="/wp-content/themes/yumu/style/img/logo.svg" alt="语幕"></a>
             </div>
             <nav class="header-menu">
                 <div class="header-menu-close navbar-button">
