@@ -3,7 +3,7 @@
 
 ## 线上演示：https://www.yumus.cn/
 
-###关于SEO设置：https://www.yumus.cn/course/2131.html
+### 关于SEO设置：https://www.yumus.cn/course/2131.html
 
 这是一款简洁的WordPress主题-YUMU，你也可以叫它的中文名称“语幕主题”，主题非常简洁也非常的纯粹，只适合用来写写博客没有一丝多余的功能。因为有不少网友来问过我用的是什么主题，能不能开源，在百般考虑后还是决定开放出来与大家共享，就当是受惠于社区也反哺于社区吧。
 
