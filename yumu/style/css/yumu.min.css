@@ -165,7 +165,7 @@ b.fn{position:absolute;top:4px;left:56px;text-transform:uppercase;font-size:12px
 #goTop:hover{background:#f1404b}
 #goTop:hover em{display:block;font-style:normal;font-size:12px;line-height:15px}
 #goTop:hover i{display:none}
-@media (max-width:1053px){.container{padding:0 15px}
+@media (max-width:1053px){.container{padding:0 15px}.main-search .search-close{right:15px}
 }
 @media (max-width:989px){.site-content{padding-top:30px}
 .entry-main-content iframe{height:calc(56.25vw - 16.875px)}
