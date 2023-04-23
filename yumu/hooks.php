@@ -1,5 +1,20 @@
 <?php
 header('X-Frame-Options:Deny');
+function key_Desc($type){
+    switch ($type) {
+        case 'k':
+            //默认SEO关键字，请在此定义，多个关键字请用英文逗号隔开。
+            $con = '关键字1,关键字2';
+            break;
+        case 'd':
+        default:
+            //默认SEO描述，请在此定义
+            $con = '这是我的网站描述啊';
+            break;
+    }
+    return $con;
+}
+//相关菜单设置
 function register_my_menus() {
 	register_nav_menus(
 	  array(
@@ -126,9 +141,9 @@ remove_filter('the_content', 'wptexturize');
 //载入JS\CSS
 add_action('wp_enqueue_scripts', function () {
   if (!is_admin()) {
-	wp_enqueue_script('yumus', get_template_directory_uri().'/style/js/yumu.min.js','',false,true);	
-	wp_enqueue_style('style', get_template_directory_uri().'/style/css/yumu.min.css');
-	wp_enqueue_style('font', get_template_directory_uri().'/style/css/iconfont.css' );
+	wp_enqueue_script('yumus', get_template_directory_uri().'/style/js/yumu.min.js?v=3.1','',false,true);	
+	wp_enqueue_style('style', get_template_directory_uri().'/style/css/yumu.min.css?v=3.1');
+	wp_enqueue_style('font', get_template_directory_uri().'/style/css/iconfont.css?v=3.1' );
 	if(is_single()){
 		wp_enqueue_script('highlight', get_template_directory_uri().'/style/js/highlight.min-11.3.1.js');
 		wp_enqueue_script('highlight-line', get_template_directory_uri().'/style/js/highlightjs-line-numbers-2.8.0.min.js');
@@ -226,6 +241,40 @@ add_filter( 'request', function ( $query_variables ) {
 	}
 	return $query_variables;
 });
+//分类TDK
+$category_meta = array( 
+array("name" => "categorykws","std" => "","title" => __('SEO关键词', 'haoui').'：'));
+function yumu_add_category_field(){
+    global $category_meta;
+    foreach($category_meta as $meta_box) {
+        echo '<div class="form-field"><label for="'.$meta_box['name'].'">'.$meta_box['title'].'</label><input name="'.$meta_box['name'].'" id="'.$meta_box['name'].'" type="text" value="" size="40">'.'</div>';
+    } 
+}
+function yumu_edit_category_field($tag){
+    global $category_meta;
+    foreach($category_meta as $meta_box) {
+        echo '<tr class="form-field"><th scope="row"><label for="'.$meta_box['name'].'">'.$meta_box['title'].'</label></th><td><input name="'.$meta_box['name'].'" id="'.$meta_box['name'].'" type="text" value="'; 
+        echo get_option(''.$meta_box['name'].'-'.$tag->term_id).'" size="40"/>'.'</td></tr>';
+    }
+}
+function yumu_category_save($term_id){
+    global $category_meta;
+    foreach($category_meta as $meta_box) {
+        $data = $_POST[$meta_box['name']];
+        if(isset($data)){
+            if(!current_user_can('manage_categories')){
+                return $term_id;
+            }
+            $key = $meta_box['name'].'-'.$term_id;
+            update_option( $key, $data );
+        }
+    }
+}
+add_action('category_add_form_fields','yumu_add_category_field',10,2);
+add_action('category_edit_form_fields','yumu_edit_category_field',10,2);
+add_action('created_category','yumu_category_save',10,1);
+add_action('edited_category','yumu_category_save',10,1);
+
 //SEO标题
 function yumu_title_seo(){
     $title = '';
@@ -241,6 +290,47 @@ function yumu_title_seo(){
 		$title = get_bloginfo( 'name' ).' - '.get_bloginfo( 'description' );
 	}
 	return $title;
+}
+//SEO关键字
+function yumu_keywords_seo(){
+    $keywords = '';
+    if(is_singular()){
+        global $post, $posts;
+    	$gettags = get_the_tags($post->ID);
+    	if ($gettags) {
+    		foreach ($gettags as $tag) {
+    			$posttag[] = $tag->name;
+    		}
+    		$keywords = implode( ',', $posttag );
+    	}
+    }elseif(is_category()){
+        $keywords = get_option('categorykws-'.get_query_var('cat'));
+    }elseif(is_tag()){
+        $keywords = single_tag_title('',false);
+    }elseif(is_home()){
+        $keywords = key_Desc('k');
+    }
+    if(empty($keywords)){
+        $keywords = key_Desc('k');
+    }
+    return $keywords;
+}
+//SEO描述
+function yumu_description_seo(){
+    $category_id = '';
+    $description = '';
+    if(is_singular()){
+        $description = get_the_excerpt ($post=null );
+    }elseif(is_category()){
+        $description = str_replace(array("<p>","","</p>", "\r", "\n"),"",category_description( $category_id ));
+    }else{
+        $description = key_Desc('d');
+    }
+    if(empty($description)){
+        $description = key_Desc('d');
+    }
+	return $description;
+
 }
 add_filter( 'wp_sitemaps_add_provider', function ($provider, $name) {
   return ( $name == 'users' ) ? false : $provider;
