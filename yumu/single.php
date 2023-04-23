@@ -6,7 +6,7 @@
 				<h1 class="entry-title"><?php the_title(); ?></h1>
 			</header>
             <div class="single_info">
-				<span><i class="iconfont icon-menu"></i><?php the_category(' ');?></span><span><i class="iconfont icon-shijian"></i><?php the_time('Y-m-d');?></span><span><i class="iconfont icon-yonghubianji"></i><?php echo get_the_author_meta( 'display_name', $post->post_author ) ?></span>
+<span><i class="iconfont icon-menu"></i><?php the_category(' ');?></span><span><i class="iconfont icon-shijian"></i><?php the_time('Y-m-d');?></span><span><i class="iconfont icon-yonghubianji"></i><?php echo get_the_author_meta( 'display_name',$post->post_author);?></span><span class="opQrcode"><i class="iconfont icon-erweima"></i>手机阅读</span><div id="qrcode"></div>
             </div>
             <div class="entry-content">
                 <div class="entry-main-content">
@@ -74,15 +74,7 @@
 		</div>
     </main>
 </div>
-<script>
-hljs.initHighlightingOnLoad();
-hljs.initLineNumbersOnLoad();
-function highlightjs(){
-	　　$('code.hljs').each(function(i, block) {
-        hljs.lineNumbersBlock(block);
-    });
-};
-document.addEventListener('highlightjs', highlightjs, false);
-</script>
+<script src="<?php echo get_template_directory_uri().'/style/js/qrcode.js'?>"></script>
+<script>var qrcode=new QRCode("qrcode",{text:window.location.href,width:128,height:128,correctLevel:QRCode.CorrectLevel.H});hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();function highlightjs(){$("code.hljs").each(function(i,block){hljs.lineNumbersBlock(block)})}document.addEventListener("highlightjs",highlightjs,false);</script>
 <?php
 get_footer();
