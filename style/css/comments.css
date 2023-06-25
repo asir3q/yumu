@@ -1,0 +1,40 @@
+/* 评论样式表，评论墙会用到 */
+#comments{margin-top:calc(var(--postGlobalMargin)*2)}
+#comments form.comment-form{display:flex;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin-bottom:calc(var(--postGlobalMargin)*2)}
+#comments form.comment-form .comment-form-comment{width:100%;margin-bottom:14px}
+#comments form.comment-form .comment-form-comment textarea{padding:14px;width:calc(100% - 28px);height:100px;border:none;background:var(--footerColor);font-size:14px;display:block}
+#comments form.comment-form .comment-form-author,#comments form.comment-form .comment-form-email,#comments form.comment-form .comment-form-url{position:relative;width:calc((100% - 28px)/ 3)}
+#comments form.comment-form #author,#comments form.comment-form #email,#comments form.comment-form #url{padding:10px 14px 10px 30px;width:calc(100% - 44px);border:none;background:var(--footerColor);font-size:14px}
+#comments form.comment-form .comment-form-author:before{position:absolute;top:11px;left:8px;content:"\e610";font-family:iconfont;color:var(--entryConColor)}
+#comments form.comment-form .comment-form-email:before{position:absolute;top:11px;left:8px;content:"\e608";font-family:iconfont;color:var(--entryConColor)}
+#comments form.comment-form .comment-form-url:before{position:absolute;top:11px;left:8px;content:"\e618";font-family:iconfont;color:var(--entryConColor)}
+#comments form.comment-form .comment-form-cookies-consent{margin-top:14px;display:flex;color:var(--entryConColor);font-size:14px;width:100%}
+#comments form.comment-form .comment-form-cookies-consent #wp-comment-cookies-consent{margin-right:14px}
+#comments form.comment-form .form-submit{margin-top:14px;width:100%;text-align:right}
+#comments form.comment-form .form-submit .submit{padding:10px;width:130px;font-size:14px;border:none;border-radius:5px;background:var(--themeColor);color:var(--ButtonFontColor)}
+#comments .comment-list li .comment-body{position:relative;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--borderColor)}
+#comments .comment-list li .comment-body .comment-meta{position:relative;margin-bottom:14px;height:40px}
+#comments .comment-list li .comment-body .comment-content{position:relative;padding:10px 14px;border-radius:5px;background:var(--footerColor);color:var(--entryConColor);font-size:14px}
+#comments .comment-list li .comment-body .comment-content p{line-height:2}
+.comment-reply-title{margin-bottom:14px}
+.comment-reply-title small{font-size:14px}
+#comments .comment-list li .comment-body .reply{position:absolute;top:10px;right:0;font-size:12px}
+#comments .comment-list li ol.children{padding-left:15px;border-left:2px solid var(--borderColor)}
+#comments .comment-list li .comment-body .comment-meta .comment-author img{border-radius:50%}
+#comments .comment-list li .comment-body .comment-meta .comment-author .fn{position:absolute;top:4px;left:56px;text-transform:uppercase;font-size:12px}
+.bypostauthor>.comment-body .comment-meta .comment-author .fn:after{margin-left:6px;padding:2px 4px;border-radius:2px;background:var(--footerColor);color:var(--entryConColor);content:"博主";font-weight:400}
+#comments .comment-list li .comment-body .comment-meta .comment-metadata{position:absolute;top:22px;left:56px;font-size:12px}
+#comments .comment-list li .comment-body .comment-meta .comment-metadata a{color:var(--entryConColor);font-weight:300}
+#comments .comment-list li .comment-body .comment-content:before{position:absolute;top:-10px;left:15px;border:5px solid transparent;border-bottom-color:var(--footerColor);content:""}
+#comments .comment-list li .comment-body .reply a.comment-reply-link{color:var(--themeColor);font-weight:300}
+.comments-pagination{margin-top:var(--postGlobalMargin)}
+.comments-pagination .nav-links{display:flex;justify-content:flex-end}
+.comments-pagination .page-numbers:last-child{margin-right:0}
+.logged-in-as,.screen-reader-text,span.says{display:none}
+@media (max-width:766px){#comments form.comment-form .comment-form-author,#comments form.comment-form .comment-form-email,#comments form.comment-form .comment-form-url{margin-bottom:14px;width:100%}
+#comments form.comment-form .form-submit .submit{width:100%}
+}
+@media (max-width:449px){.comments-pagination .nav-links{display:flex;justify-content:center}
+.comments-pagination .page-numbers{display:none}
+.comments-pagination .next,.comments-pagination .prev{display:flex}
+}

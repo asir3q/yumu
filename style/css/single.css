@@ -1,0 +1,48 @@
+/* 文章和页面样式表 */
+.post-header{margin-bottom:var(--postGlobalMargin)}
+.post-title{font-size:var(--postH1Size);line-height:2;margin-bottom:var(--postGlobalMargin)}
+.post-info{color:var(--entryConColor);font-size:14px}
+.post-info .infoLeft{margin-right:20px}
+.post-info .iconfont{margin-right:5px}
+#qrcode{position:absolute;z-index:10;visibility:hidden;width:148px;height:148px;border-radius:5px;background:var(--bgColor);box-shadow:0 0 10px var(--boxShowColor);opacity:0;transition:all .5s cubic-bezier(.4,.01,.165,.99);-webkit-transform:translate(310px,10px);transform:translate(310px,10px);justify-content:center;align-items:center}
+.opQrcode:hover~#qrcode{visibility:visible;opacity:1}
+.post-main{line-height:2}
+.post-main figure,.post-main p{margin-bottom:var(--postGlobalMargin);max-width:100%}
+.post-main figure{text-align:left}
+.post-main img{height:auto;max-width:100%;display:block;margin:0 auto}
+.post-main h1,.post-main h2,.post-main h3,.post-main h4,.post-main h5,.post-main h6{margin-bottom:var(--postGlobalMargin);font-weight:700;position:relative;padding:0 0 0 12px}
+.post-main h1{font-size:22px}
+.post-main h2{font-size:20px}
+.post-main h3{font-size:18px}
+.post-main h4,.post-main h5,.post-main h6{font-size:16px}
+.post-main h1::before,.post-main h2::before,.post-main h3::before,.post-main h4::before,.post-main h5::before,.post-main h6::before{position:absolute;top:0;bottom:0;left:0;margin:auto;width:4px;height:100%;border-radius:10px;background:var(--themeColor);content:""}
+.post-main ol{counter-reset:sectioncounter}
+.post-main ol,.post-main ul{margin-bottom:var(--postGlobalMargin);padding-left:var(--postGlobalMargin)}
+.post-main ol li,.post-main ul li{list-style:inherit;color:var(--entryConColor)}
+figcaption{color:var(--entryConColor);font-size:14px;text-align:center}
+blockquote p{margin-bottom:10px!important}
+.post-main blockquote{margin-bottom:30px;padding:10px 20px 20px;background-color:var(--footerColor);border-radius:5px}
+.post-main blockquote cite{color:var(--entryConColor);font-style:normal}
+.post-main blockquote::before{content:"\e61d";font-family:iconfont!important;font-size:24px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.post-main hr{margin-bottom:var(--postGlobalMargin);border:none;background:var(--borderColor);height:4px}
+.post-main video{max-width:100%;height:auto;margin-bottom:var(--postGlobalMargin)}
+.post-main iframe{width:100%;height:calc(var(--headSearchWidth)*.5625);margin-bottom:var(--postGlobalMargin)}
+.post-main .wp-block-table{width:100%;overflow-x:auto}
+.post-main .wp-block-table table{width:100%;border-collapse:collapse;border-spacing:0}
+.post-main .wp-block-table td,.wp-block-table th,.wp-block-table tr{overflow:hidden;padding:6px 12px;border:1px solid var(--borderColor);vertical-align:middle;white-space:nowrap}
+.post-main .wp-block-table tr:nth-child(odd){background:var(--footerColor)}
+.post-main a{border-bottom:2px solid var(--themeColor)}
+.post-main a:hover{box-shadow:inset 0 -10px var(--themeColor);-webkit-transition:box-shadow .2s linear;transition:box-shadow .2s linear}
+.post-tag{margin-bottom:var(--postGlobalMargin);width:100%;padding:14px 0;border-top:1px solid var(--borderColor);border-bottom:1px solid var(--borderColor);color:var(--entryConColor);font-size:14px;line-height:2}
+.post-tag a{display:inline-block;padding:2px 10px;background:var(--footerColor);margin:4px 6px;border-radius:18px}
+.post-tag a:hover{color:var(--themeColor)}
+.post-navigation{justify-content:space-between;font-size:14px;margin-bottom:var(--postGlobalMargin)}
+.nav-box{width:calc(50% - 8px);position:relative}
+.nav-box a{display:block;padding:30px 14px;background-position:50%;background-size:cover;background-repeat:no-repeat;color:var(--ButtonFontColor);border-radius:5px}
+.nav-box a:after{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.46);content:"";border-radius:5px}
+.post-navigation .next{text-align:right}
+.prev_info{z-index:1;position:relative}
+.prev_info p{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.related-post{margin-top:calc(var(--postGlobalMargin)*2)}
+.attach-title{display:block;font-size:var(--postH3Size);font-weight:700;border-bottom:2px solid var(--borderColor);padding-bottom:14px;margin-bottom:var(--postGlobalMargin)}
+code::-webkit-scrollbar-thumb{width:8px;border-radius:2em;background:#374e70}

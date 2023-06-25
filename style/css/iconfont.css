@@ -1,0 +1,17 @@
+@font-face{font-family:iconfont;src:url(../font/iconfont.woff2) format('woff2'),url(../font/iconfont.woff) format('woff'),url(../font/iconfont.ttf) format('truetype')}
+.iconfont{font-family:iconfont!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-double-quotes-l:before{content:"\e61d"}
+.icon-book-read-line:before{content:"\e61c"}
+.icon-arrow-up-s-line:before{content:"\e606"}
+.icon-arrow-left-s-line:before{content:"\e607"}
+.icon-at-line:before{content:"\e608"}
+.icon-close-line:before{content:"\e609"}
+.icon-calendar-2-line:before{content:"\e60a"}
+.icon-arrow-right-s-line:before{content:"\e60b"}
+.icon-arrow-down-s-line:before{content:"\e60d"}
+.icon-qr-code-line:before{content:"\e60f"}
+.icon-user-3-line:before{content:"\e610"}
+.icon-lightbulb-flash-line:before{content:"\e612"}
+.icon-search-2-line:before{content:"\e613"}
+.icon-menu-2-line:before{content:"\e614"}
+.icon-links-line:before{content:"\e618"}
