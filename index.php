@@ -51,6 +51,6 @@
                 <input class="field" placeholder="输入关键词进行搜索…" autocomplete="off" value="" name="s" required="true" type="search">
                 <button type="submit" class="search-submit"><i class="iconfont icon-search-2-line"></i></button>
             </form>
-    <? }?>
+    <?php }?>
     </section>
 <?php get_footer();
