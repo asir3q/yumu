@@ -82,12 +82,12 @@ add_action('template_redirect','remove_wp_archives');
 
 //屏蔽渲染到前台显示的wp版本号，不要让别人知道你是什么版本
 remove_action('wp_head','wp_generator');
-function remove_wp_version_strings($src) {
-    $parts = explode('?',$src);
-    return $parts[0];
-}
-add_filter('script_loader_src','remove_wp_version_strings');
-add_filter('style_loader_src','remove_wp_version_strings');
+// function remove_wp_version_strings($src) {
+//     $parts = explode('?',$src);
+//     return $parts[0];
+// }
+// add_filter('script_loader_src','remove_wp_version_strings');
+// add_filter('style_loader_src','remove_wp_version_strings');
 
 //禁止加载古登堡样式
 function remove_block_library_css(){
