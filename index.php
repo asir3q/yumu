@@ -5,7 +5,7 @@
             <span class="term-illustrate"><?php single_term_title();?></span>
         </div>
     </section>
-    <?}elseif(is_search()){?>
+    <?php }elseif(is_search()){?>
     <section class="term-bar">
         <div class="container">
             <span>搜索结果</span>
