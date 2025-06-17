@@ -1,4 +1,5 @@
 <?php get_header();?>
+<link rel='stylesheet' id='single-css' href=<?php echo get_template_directory_uri().'/style/css/imgbox.css'?>" type='text/css' media='all' />
     <main class="site-content container">
         <article class="post-content">
             <div class="post-header">
@@ -16,6 +17,17 @@
             <?php the_content();?>
             <?php endwhile;?>
             </div>
+	<div class="gallery-modal" id="galleryModal">
+		<div class="gallery-content">
+			<div class="gallery-image-container"><img class="gallery-main" id="galleryMainImage"></div>
+			<div class="gallery-thumbnails" id="galleryThumbnails"></div>
+		</div>
+		<div class="gallery-nav">
+			<button class="gallery-prev"><i class="iconfont icon-arrow-left-s-line"></i></button>
+			<button class="gallery-next"><i class="iconfont icon-arrow-right-s-line"></i></button>
+		</div>
+		<button class="gallery-close"><i class="iconfont icon-close-line"></i></button>
+	</div>
         </article>
         <?php post_the_tags();?>
         <div class="post-navigation flex">
@@ -75,6 +87,7 @@
         </div>
     </main>
     <script src="<?php echo get_template_directory_uri().'/style/js/qrcode.js'?>"></script>
+    <script src="<?php echo get_template_directory_uri().'/style/js/imgbox.js'?>"></script>
     <script>var qrcode=new QRCode("qrcode",{text:window.location.href,width:128,height:128,correctLevel:QRCode.CorrectLevel.H});</script>
     <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();function highlightjs(){$("code.hljs").each(function(i,block){hljs.lineNumbersBlock(block)})}document.addEventListener("highlightjs",highlightjs,false);</script>
 <?php get_footer();
