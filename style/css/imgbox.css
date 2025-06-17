@@ -1,0 +1,138 @@
+/* 相册模态框样式 */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  overflow: hidden;
+}
+.gallery-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.gallery-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  overflow: hidden;
+}
+.gallery-main {
+  max-width: calc(100vw - 128px);
+  max-height: calc(100vh - 164px);
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+.gallery-thumbnails {
+  height: 110px;
+  display: flex;
+  overflow-x: auto;
+  background-color: var(--footerColor);
+  padding: 6px;
+  justify-content: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: #666 transparent;
+  scroll-behavior: smooth;
+}
+.gallery-thumbnails::-webkit-scrollbar {
+  height: 8px;
+}
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+.gallery-thumb {
+  height: 100%;
+  margin: 0 6px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+.gallery-thumb.active {
+  opacity: 1;
+  border-color: #fff;
+  transform: scale(1.08);
+}
+.gallery-thumb:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+.gallery-nav button {
+  background: var(--footerColor);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-nav button .iconfont{
+    font-size: 24px;
+}
+.gallery-nav button:hover {
+  background: var(--themeColor);
+}
+.gallery-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--footerColor);
+  color: #fff;
+  border: none;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-close:hover {
+  background: var(--themeColor);
+  transform: rotate(90deg);
+}
+.gallery-close .iconfont{
+  font-size: 24px;
+}
+
+/* 动画效果 */
+@keyframes fadeInZoom {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.gallery-main {
+  animation: fadeInZoom 0.3s ease-out;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.gallery-thumb {
+  animation: fadeInUp 0.3s ease-out;
+}
