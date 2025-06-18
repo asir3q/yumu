@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function initGallery() {
     const articleImages = document.querySelectorAll('.post-main img');
     allImages = Array.from(articleImages);
-    console.log("333");
     articleImages.forEach((img, index) => {
       img.addEventListener('click', () => openGallery(index));
     });
