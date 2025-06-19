@@ -17,17 +17,26 @@
             <?php the_content();?>
             <?php endwhile;?>
             </div>
-	<div class="gallery-modal" id="galleryModal">
-		<div class="gallery-content">
-			<div class="gallery-image-container"><img class="gallery-main" id="galleryMainImage"></div>
-			<div class="gallery-thumbnails" id="galleryThumbnails"></div>
-		</div>
-		<div class="gallery-nav">
-			<button class="gallery-prev"><i class="iconfont icon-arrow-left-s-line"></i></button>
-			<button class="gallery-next"><i class="iconfont icon-arrow-right-s-line"></i></button>
-		</div>
-		<button class="gallery-close"><i class="iconfont icon-close-line"></i></button>
-	</div>
+	    <div class="gallery-modal" id="galleryModal">
+                <div class="gallery-content">
+                    <div class="gallery-image-container"><img class="gallery-main" id="galleryMainImage"></div>
+                    <div class="gallery-thumbnails-nav">
+                        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+                    </div>
+                    <div class="gallery-zoom-display" id="zoomDisplay">×1</div>
+                </div>
+                <div class="gallery-nav">
+                    <button class="gallery-prev"><i class="iconfont icon-arrow-left-s-line"></i></button>
+                    <button class="gallery-next"><i class="iconfont icon-arrow-right-s-line"></i></button>
+                </div>
+                <div class="gallery-zoom-controls">
+                    <button class="gallery-zoom-btn" id="zoomIn">+</button>
+                    <button class="gallery-zoom-btn" id="zoomReset">O</button>
+                    <button class="gallery-zoom-btn" id="zoomOut">-</button>
+                </div>
+                <button class="gallery-close"><i class="iconfont icon-close-line"></i></button>
+                <div class="gallery-hint">← ↑ → ↓ 或鼠标滚轮切换图片 · + o - 缩放图片 · ESC 关闭</div>
+            </div>
         </article>
         <?php post_the_tags();?>
         <div class="post-navigation flex">
