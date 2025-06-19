@@ -2,7 +2,7 @@
 
 **预览主题效果，请访问作者博客➣➣➣[https://www.yumus.cn/](https://www.yumus.cn/)**
 
-**留个QQ群，水群或有问题可以进群，[QQ群号：136158478](https://qm.qq.com/cgi-bin/qm/qr?k=QXApLNs8o699vSO38i6YleapjXn9n8S-&jump_from=webapi&authKey=dfxBqMAcZNcjDkoz4s/vRhSrbxy6BFwMp5kCKrdrPq4qKGVsg/gVrM8E5RbL3N5P 'QQ群号：136158478')**
+**留个QQ群，水群或有问题可以进群，[QQ群号：136158478](https://qm.qq.com/cgi-bin/qm/qr?k=QXApLNs8o699vSO38i6YleapjXn9n8S-&jump_from=webapi&authKey=dfxBqMAcZNcjDkoz4s/vRhSrbxy6BFwMp5kCKrdrPq4qKGVsg/gVrM8E5RbL3N5P 'QQ群号：136158478')**不是说加了群找到我我就要给你解决问题，完全看心情
 
 **作者微信：asir3q**
 
