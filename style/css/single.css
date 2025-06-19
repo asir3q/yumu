@@ -9,7 +9,7 @@
 .post-main{line-height:2}
 .post-main figure,.post-main p{margin-bottom:var(--postGlobalMargin);max-width:100%}
 .post-main figure{text-align:left}
-.post-main img{height:auto;max-width:100%;display:block;margin:0 auto}
+.post-main img{height:auto;max-width:100%;display:block;margin:0 auto;cursor:zoom-in}
 .post-main h1,.post-main h2,.post-main h3,.post-main h4,.post-main h5,.post-main h6{margin-bottom:var(--postGlobalMargin);font-weight:700;position:relative;padding:0 0 0 12px}
 .post-main h1{font-size:22px}
 .post-main h2{font-size:20px}
