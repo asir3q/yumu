@@ -7,10 +7,10 @@
 **作者微信：asir3q**
 
 **作者服务器配置（阿里云99计划）** 
-CPU：2核心
-内存：2GB
-系统：Debian12（x64）
-环境：Nginx1.28.0 + Php8.3 + MariaDB10.11.11 + Memcached
+- CPU：2核心
+- 内存：2GB
+- 系统：Debian12（x64）
+- 环境：Nginx1.28.0 + Php8.3 + MariaDB10.11.11 + Memcached
 
 **版本更新（没问题的情况下一般不更新）**
 
