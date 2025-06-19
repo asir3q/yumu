@@ -1,170 +1,183 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const galleryModal = document.getElementById('galleryModal');
-  const galleryMainImage = document.getElementById('galleryMainImage');
-  const galleryThumbnails = document.getElementById('galleryThumbnails');
-  
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryModal = document.getElementById("galleryModal");
+  const galleryMainImage = document.getElementById("galleryMainImage");
+  const galleryThumbnails = document.getElementById("galleryThumbnails");
+  const zoomDisplay = document.getElementById("zoomDisplay");
+  const zoomInBtn = document.getElementById("zoomIn");
+  const zoomOutBtn = document.getElementById("zoomOut");
+  const zoomResetBtn = document.getElementById("zoomReset");
   let currentIndex = 0;
   let allImages = [];
-  
-  // 1. 初始化图片事件监听
+  let zoomScale = 1;
+  let hintTimer = null;
   function initGallery() {
-    const articleImages = document.querySelectorAll('.post-main img');
+    const articleImages = document.querySelectorAll(".post-main img");
     allImages = Array.from(articleImages);
     articleImages.forEach((img, index) => {
-      img.addEventListener('click', () => openGallery(index));
+      img.addEventListener("click", () => openGallery(index));
     });
   }
-  
-  // 2. 打开相册
   function openGallery(clickedIndex) {
     currentIndex = clickedIndex;
+    galleryModal.style.display = "block";
+    document.body.style.overflow = "hidden";
     updateMainImage();
     createThumbnails();
-    galleryModal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // 确保缩略图区域滚动到当前选中图片
-    setTimeout(() => {
-      const activeThumb = document.querySelector('.gallery-thumb.active');
-      if (activeThumb) {
-        activeThumb.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'nearest',
-          inline: 'center'
-        });
-      }
-    }, 100);
   }
-  
-  // 3. 更新主显示区大图
   function updateMainImage() {
     if (!allImages[currentIndex]) return;
-    
     galleryMainImage.src = allImages[currentIndex].src;
     galleryMainImage.alt = allImages[currentIndex].alt;
-    
-    // 为图片加载添加过渡效果
+    zoomScale = 1;
+    updateZoomDisplay();
     galleryMainImage.style.opacity = 0;
+    galleryMainImage.style.transform = "scale(0.95)";
     setTimeout(() => {
+      galleryMainImage.style.transition = "opacity 0.4s, transform 0.4s";
       galleryMainImage.style.opacity = 1;
+      galleryMainImage.style.transform = "scale(1)";
     }, 10);
-    
-    // 更新缩略图选中状态
-    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const thumbs = document.querySelectorAll(".gallery-thumb");
     thumbs.forEach((thumb, idx) => {
-      thumb.classList.toggle('active', idx === currentIndex);
+      thumb.classList.toggle("active", idx === currentIndex);
     });
+    scrollToCurrentThumb();
   }
-  
-  // 4. 创建缩略图列表
   function createThumbnails() {
-    galleryThumbnails.innerHTML = '';
-    
+    galleryThumbnails.innerHTML = "";
     allImages.forEach((img, index) => {
-      const thumb = document.createElement('img');
-      thumb.className = 'gallery-thumb';
+      const thumb = document.createElement("img");
+      thumb.className = "gallery-thumb";
       thumb.src = img.src;
       thumb.alt = `${img.alt}`;
-      
       if (index === currentIndex) {
-        thumb.classList.add('active');
+        thumb.classList.add("active");
       }
-      
-      thumb.addEventListener('click', (e) => {
+      thumb.addEventListener("click", (e) => {
         e.stopPropagation();
         currentIndex = index;
         updateMainImage();
       });
-      
       galleryThumbnails.appendChild(thumb);
     });
   }
-  
-  // 5. 导航功能
   function prevImage() {
     currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
     updateMainImage();
-    scrollToCurrentThumb();
   }
-  
   function nextImage() {
     currentIndex = (currentIndex + 1) % allImages.length;
     updateMainImage();
-    scrollToCurrentThumb();
   }
-  
-  // 滚动到当前缩略图
   function scrollToCurrentThumb() {
-    const activeThumb = document.querySelector('.gallery-thumb.active');
+    const activeThumb = document.querySelector(".gallery-thumb.active");
     if (activeThumb) {
-      activeThumb.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'nearest',
-        inline: 'center'
+      activeThumb.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
       });
     }
   }
-  
-  // 6. 关闭相册
   function closeGallery() {
-    galleryModal.style.display = 'none';
-    document.body.style.overflow = '';
+    galleryModal.style.display = "none";
+    document.body.style.overflow = "";
+    if (allImages[currentIndex]) {
+      allImages[currentIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   }
-  
-  // 7. 键盘导航事件
+  function zoomIn() {
+    if (zoomScale < 5) {
+      zoomScale += 0.25;
+      applyZoom();
+    }
+  }
+  function zoomOut() {
+    if (zoomScale > 0.5) {
+      zoomScale -= 0.25;
+      applyZoom();
+    }
+  }
+  function resetZoom() {
+    zoomScale = 1;
+    applyZoom();
+  }
+  function applyZoom() {
+    galleryMainImage.style.transform = `scale(${zoomScale})`;
+    updateZoomDisplay();
+  }
+  function updateZoomDisplay() {
+    zoomDisplay.textContent = `×${zoomScale}`;
+  }
   function handleKeyDown(e) {
-    if (!galleryModal.style.display || galleryModal.style.display === 'none') return;
-    
-    switch(e.key) {
-      case 'ArrowLeft':
-      case 'ArrowUp': // 上箭头也切换到上一张
+    if (!galleryModal.style.display || galleryModal.style.display === "none")
+      return;
+    switch (e.key) {
+      case "ArrowLeft":
+      case "ArrowUp":
         prevImage();
+        e.preventDefault();
         break;
-      case 'ArrowRight':
-      case 'ArrowDown': // 下箭头也切换到下一张
+      case "ArrowRight":
+      case "ArrowDown":
         nextImage();
+        e.preventDefault();
         break;
-      case 'Escape':
+      case "+":
+      case "=":
+        zoomIn();
+        e.preventDefault();
+        break;
+      case "-":
+      case "_":
+        zoomOut();
+        e.preventDefault();
+        break;
+      case "0":
+      case "o":
+        resetZoom();
+        e.preventDefault();
+        break;
+      case "Escape":
         closeGallery();
+        e.preventDefault();
+        break;
+      case " ":
+        nextImage();
+        e.preventDefault();
         break;
     }
   }
-  
-  // 8. 鼠标滚轮事件处理
-  function handleWheel(e) {
-    if (!galleryModal.style.display || galleryModal.style.display === 'none') return;
-    
-    // 阻止默认滚动行为
-    e.preventDefault();
-    
-    // 判断滚轮方向
-    if (e.deltaY < 0) {
-      // 向上滚动 - 上一张
-      prevImage();
-    } else if (e.deltaY > 0) {
-      // 向下滚动 - 下一张
-      nextImage();
-    }
-  }
-  
-  // 9. 绑定事件监听器
   function bindEvents() {
-    document.querySelector('.gallery-prev').addEventListener('click', prevImage);
-    document.querySelector('.gallery-next').addEventListener('click', nextImage);
-    
-    document.querySelector('.gallery-close').addEventListener('click', closeGallery);
-    
-    galleryModal.addEventListener('click', (e) => {
+    document
+      .querySelector(".gallery-prev")
+      .addEventListener("click", prevImage);
+    document
+      .querySelector(".gallery-next")
+      .addEventListener("click", nextImage);
+    document
+      .querySelector(".gallery-close")
+      .addEventListener("click", closeGallery);
+    galleryModal.addEventListener("click", (e) => {
       if (e.target === galleryModal) closeGallery();
     });
-    
-    // 键盘事件
-    document.addEventListener('keydown', handleKeyDown);
-    
-    // 鼠标滚轮事件
-    document.addEventListener('wheel', handleWheel, { passive: false });
+    zoomInBtn.addEventListener("click", zoomIn);
+    zoomOutBtn.addEventListener("click", zoomOut);
+    zoomResetBtn.addEventListener("click", resetZoom);
+    document.addEventListener("keydown", handleKeyDown);
+    galleryModal.addEventListener(
+      "wheel",
+      (e) => {
+        if (galleryModal.style.display === "none") return;
+        if (e.deltaY < 0) prevImage();
+        else if (e.deltaY > 0) nextImage();
+      },
+      { passive: false },
+    );
   }
-  
   initGallery();
   bindEvents();
 });
