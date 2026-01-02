@@ -104,6 +104,12 @@ function remove_block_library_css(){
 }
 add_action('wp_enqueue_scripts','remove_block_library_css',100);
 
+//移除WP核心的global-styles的输出
+add_action( 'wp_loaded', function() {
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+    remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+}, 20 );
+
 //我们只是个简简单单的网站，不需要那么多冗余
 remove_action('template_redirect','wp_shortlink_header',11,0);
 remove_action('wp_head','feed_links_extra',3);
